@@ -6,7 +6,9 @@
 var sendJSONResponse = function (res, status, content) {
     res.status(status);
 
-    content = {
+    content = content.error ? {
+        error: content.error
+    } : {
         message: content.msg,
         data: content.data || {}
     };

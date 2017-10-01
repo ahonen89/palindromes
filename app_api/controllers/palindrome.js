@@ -1,6 +1,9 @@
 // requires
-var utils = require('../utils/utils');
 var fs = require('fs');
+var utils = require('../utils/utils');
+var errors = require('../utils/errors');
+
+// palindromes file path
 var palindromesStorageFilePath = __dirname + '/../storage/palindromes.json';
 
 /** Check if text is a palindrome
@@ -25,7 +28,7 @@ function isPalindrome(text) {
 var addPalindrome = function (req, res) {
     // body must contain the text to be checked for palindrome
     if (!req.body.text) {
-        return utils.sendJSONResponse(res, 400, {msg: 'Please supply request body\'s required field "text", to check for palindrome'});
+        return utils.sendJSONResponse(res, 400, { error: errors.getError("REQUIRED_BODY_PARAM_ERROR", { 'param': 'text' }) });
     }
 
     // check req.body.text is a palindrome
@@ -47,11 +50,11 @@ var addPalindrome = function (req, res) {
             utils.sendJSONResponse(res, 201, {msg: 'Successfully added palindrome', data: {text: req.body.text} });
         } catch (exception) {
             // something went wrong
-            return utils.sendJSONResponse(res, 400, {msg: 'Something went wrong', data: exception });
+            return utils.sendJSONResponse(res, 400, { error: errors.getError("SERVER_INTERNAL_ERROR", null, exception) });
         }
     } else {
         // text is not palindrome. send response
-        return utils.sendJSONResponse(res, 400, {msg: 'Text is not a palindrome', data: {text: req.body.text} });
+        return utils.sendJSONResponse(res, 400, { error: errors.getError("PALINDROME_ERROR", { 'text': req.body.text }, {text: req.body.text}) });
     }
 };
 
@@ -68,7 +71,7 @@ var retrievePalindromes = function (req, res) {
         // check "palindromes" property exists and is an array
     } catch (exception) {
         // return exception
-        return utils.sendJSONResponse(res, 400, {msg: 'Something went wrong', data: exception });
+        return utils.sendJSONResponse(res, 400, { error: errors.getError("SERVER_INTERNAL_ERROR", null, exception) });
     }
 
     // check property exists and is an array
@@ -82,7 +85,7 @@ var retrievePalindromes = function (req, res) {
         // respond with palindromes list
         return utils.sendJSONResponse(res, 200, {msg: 'Successfully retrieved list of palindromes', data: {palindromes: palindromesSliced} });
     } else {
-        return utils.sendJSONResponse(res, 400, {msg: 'Palindromes file is not well formatted', data: {} });
+        return utils.sendJSONResponse(res, 400, { error: errors.getError("PALINDROMES_FILE_ERROR", null) });
     }
 };
 

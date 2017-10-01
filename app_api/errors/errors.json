@@ -1,16 +1,22 @@
 {
-  "SERVER_ERROR": {
+  "SERVER_INTERNAL_ERROR": {
     "code": 1000,
-    "message": "",
-    "details": {
-      "additionalData": {}
-    }
+    "message": "Server internal error",
+    "details": {}
   },
-  "INTERNAL_ERROR": {
+  "REQUIRED_BODY_PARAM_ERROR": {
     "code": 1001,
-    "message": "",
-    "details": {
-      "additionalData": {}
-    }
+    "message": "Please supply request body's required param '%param%', to check for palindrome",
+    "details": {}
+  },
+  "PALINDROMES_FILE_ERROR": {
+    "code": 1002,
+    "message": "Palindromes file is not well formatted",
+    "details": {}
+  },
+  "PALINDROME_ERROR": {
+    "code": 1003,
+    "message": "Text '%text%' is not a palindrome",
+    "details": {}
   }
 }

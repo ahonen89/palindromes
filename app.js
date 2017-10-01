@@ -31,6 +31,9 @@ app.use('/', require('./app_server/routes/index'));
 // API routes
 app.use('/api', require('./app_api/routes/index'));
 
+// init errors module
+require('./app_api/utils/errors').init();
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
