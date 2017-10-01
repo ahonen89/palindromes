@@ -50,7 +50,7 @@ var addPalindrome = function (req, res) {
             utils.sendJSONResponse(res, 201, {msg: 'Successfully added palindrome', data: {text: req.body.text} });
         } catch (exception) {
             // something went wrong
-            return utils.sendJSONResponse(res, 400, { error: errors.getError("SERVER_INTERNAL_ERROR", null, exception) });
+            return utils.sendJSONResponse(res, 500, { error: errors.getError("SERVER_INTERNAL_ERROR", null, exception) });
         }
     } else {
         // text is not palindrome. send response
@@ -71,7 +71,7 @@ var retrievePalindromes = function (req, res) {
         // check "palindromes" property exists and is an array
     } catch (exception) {
         // return exception
-        return utils.sendJSONResponse(res, 400, { error: errors.getError("SERVER_INTERNAL_ERROR", null, exception) });
+        return utils.sendJSONResponse(res, 500, { error: errors.getError("SERVER_INTERNAL_ERROR", null, exception) });
     }
 
     // check property exists and is an array
