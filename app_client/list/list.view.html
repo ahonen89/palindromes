@@ -2,17 +2,27 @@
     <h3>Palindromes list</h3>
 
     <div layout="row" layout-align="start center">
-        <h4 style="padding: 5px; margin-right: 25px;">SHOWING 1-10 OF 120</h4>
-        <md-button class="md-icon-button md-primary">
+        <h4 style="padding: 5px; margin-right: 20px;">SHOWING {{ (currentOffset-0) + 1 }}
+            - {{ intervalLimit = (currentOffset-0) + (maxRowsOnPage-0); intervalLimit > palindromesCount ? palindromesCount : intervalLimit }} OF {{palindromesCount}}</h4>
+
+        <md-input-container class="md-block" style="padding: 5px; margin-right: 20px;">
+            <md-select ng-model="maxRowsOnPage" ng-change="getPalindromes()" aria-label="a">
+                <md-option ng-repeat="lim in limits" value="{{lim}}">
+                    {{lim}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-button class="md-icon-button md-primary" ng-click="goToFirstPage()">
             <md-icon><<</md-icon>
         </md-button>
-        <md-button class="md-icon-button md-primary">
+        <md-button class="md-icon-button md-primary" ng-click="goToPreviousPage()">
             <md-icon><</md-icon>
         </md-button>
-        <md-button class="md-icon-button md-primary">
+        <md-button class="md-icon-button md-primary" ng-click="goToNextPage()">
             <md-icon style="height: auto;">></md-icon>
         </md-button>
-        <md-button class="md-icon-button md-primary">
+        <md-button class="md-icon-button md-primary" ng-click="goToLastPage()">
             <md-icon>>></md-icon>
         </md-button>
     </div>

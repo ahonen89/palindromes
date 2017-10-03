@@ -83,7 +83,7 @@ var retrievePalindromes = function (req, res) {
         var palindromesSliced = jsonData.palindromes.slice(offset, limit);
 
         // respond with palindromes list
-        return utils.sendJSONResponse(res, 200, {msg: 'Successfully retrieved list of palindromes', data: {palindromes: palindromesSliced} });
+        return utils.sendJSONResponse(res, 200, {msg: 'Successfully retrieved list of palindromes', data: { count: jsonData.palindromes.length, palindromes: palindromesSliced } });
     } else {
         return utils.sendJSONResponse(res, 400, { error: errors.getError("PALINDROMES_FILE_ERROR", null) });
     }

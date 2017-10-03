@@ -26,7 +26,7 @@
             return $http({
                 method: 'GET',
                 url: '/api/palindromes',
-                query: {
+                params: {
                     offset: offset,
                     limit: limit
                 }
