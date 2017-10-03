@@ -40,7 +40,10 @@ var addPalindrome = function (req, res) {
             var jsonData = JSON.parse(data);
             // check "palindromes" property exists and is an array
             if (jsonData['palindromes'] && Array.isArray(jsonData['palindromes'])) {
-                jsonData['palindromes'].push(req.body.text);
+                jsonData['palindromes'].push({
+                    text: req.body.text,
+                    received: new Date().getTime()
+                });
             }
 
             // overwrite file with content including new added palindrome
@@ -76,14 +79,21 @@ var retrievePalindromes = function (req, res) {
 
     // check property exists and is an array
     if (jsonData['palindromes'] && Array.isArray(jsonData['palindromes'])) {
+        // define 10 minutes ago in miliseconds
+        var tenMinutesAgoInMiliseconds = new Date().getTime() - 10*60*1000;
+        // get only palindromes received in last ten minutes
+        var palindromesReceivedInLastTenMinutes = jsonData.palindromes.filter(function(palindromeObject) {
+            return palindromeObject.received > tenMinutesAgoInMiliseconds;
+        });
+
         // get offset and limit from query params
         var offset = req.query.offset ? parseInt(req.query.offset) : 0;
-        var limit = req.query.limit ? offset + parseInt(req.query.limit) : jsonData.palindromes.length;
+        var limit = req.query.limit ? offset + parseInt(req.query.limit) : palindromesReceivedInLastTenMinutes.length;
         // slice array based on offset and limit
-        var palindromesSliced = jsonData.palindromes.slice(offset, limit);
+        var palindromesSliced = palindromesReceivedInLastTenMinutes.slice(offset, limit);
 
         // respond with palindromes list
-        return utils.sendJSONResponse(res, 200, {msg: 'Successfully retrieved list of palindromes', data: { count: jsonData.palindromes.length, palindromes: palindromesSliced } });
+        return utils.sendJSONResponse(res, 200, {msg: 'Successfully retrieved list of palindromes', data: { count: palindromesReceivedInLastTenMinutes.length, palindromes: palindromesSliced } });
     } else {
         return utils.sendJSONResponse(res, 400, { error: errors.getError("PALINDROMES_FILE_ERROR", null) });
     }
