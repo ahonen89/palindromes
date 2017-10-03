@@ -1,0 +1,11 @@
+<div ng-controller="addController" style="padding: 20px;">
+    <h3>Add palindrome</h3>
+
+    <div layout="row" layout-align="start center">
+        <md-input-container md-no-float class="md-icon-float md-block" style="width: 500px;">
+            <input ng-model="palindrome" type="text" placeholder="Type word/phrase">
+        </md-input-container>
+
+        <md-button class="md-raised md-primary" style="margin-left: 20px;" ng-click="checkAndAddPalindrome()">Add</md-button>
+    </div>
+</div>

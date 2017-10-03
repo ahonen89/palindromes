@@ -1,0 +1,108 @@
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+    line-height: 1.4;
+    letter-spacing: -0.1px;
+}
+
+body {
+    font-size: 1.3rem;
+}
+
+html, body {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+}
+
+form {
+    font-size: 1.6rem;
+}
+
+/*Headings*/
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: normal;
+}
+
+h1, .h1 {
+    font-size: 2.4rem;
+}
+
+h2, .h2 {
+    font-size: 2.0rem;
+}
+
+h3, .h3 {
+    font-size: 1.6rem;
+}
+
+h4, .h4 {
+    font-size: 1.4rem;
+}
+
+h5, .h5 {
+    font-size: 1.3rem;
+}
+
+h6, .h6 {
+    font-size: 1.2rem;
+}
+
+/*Links*/
+a {
+    text-decoration: none;
+}
+
+/*a :hover, :active {*/
+/*text-decoration: underline;*/
+/*}*/
+
+/* Text format helpers */
+.text-italic {
+    font-style: italic;
+}
+
+.text-semibold {
+    font-weight: 600;
+}
+
+.text-bold, strong {
+    font-weight: 700;
+}
+
+.text-strike {
+    text-decoration: line-through;
+}
+
+.text-super {
+    vertical-align: super;
+}
+
+.text-sub {
+    vertical-align: sub;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+/* Text align helpers */
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}

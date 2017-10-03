@@ -1,5 +1,20 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(layout="column" layout-fill flex)
+    div.md-whiteframe-z2(layout="column" flex="none" style="padding: 20px;")
+      h1= title
+      p Welcome to #{title}
+
+    div(layout="row" layout-fill flex)
+      div.md-whiteframe-z2(layout="column" flex="20" layout-fill)
+        md-list
+          md-list-item(ui-sref="add" md-ink-ripple layout="row" layout-align="start center")
+            i.material-icons(style="margin-left: 5px; margin-right: 15px;") face
+            span Add palindrome
+
+          md-list-item(ui-sref="list" md-ink-ripple layout="row" layout-align="start center")
+            i.material-icons(style="margin-left: 5px; margin-right: 15px;") list
+            span Palindromes list
+
+      div#main(ui-view layout="column" flex layout-fill)
