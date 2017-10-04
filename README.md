@@ -61,7 +61,7 @@ GET host:8000 /api/palindromes?offset=0&limit=5 (retrieve palindromes. Supports 
 **5.Deployment instructions**
 
 Clone github repository or download zip file.  
-"cd" into the folder and run "npm install" to install the app's dependencies.  
+"cd" into the folder and run "npm install" to install the app's dependencies. Also run "bower install" to install the front-end dependencies.
 
 After the dependencies are installed:  
 "npm start" for running the app.  
