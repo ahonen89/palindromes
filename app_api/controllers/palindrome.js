@@ -2,6 +2,7 @@
 var fs = require('fs');
 var utils = require('../utils/utils');
 var errors = require('../utils/errors');
+var constants = require('../utils/constants');
 
 // palindromes file path
 var palindromesStorageFilePath = __dirname + '/../storage/palindromes.json';
@@ -80,7 +81,7 @@ var retrievePalindromes = function (req, res) {
     // check property exists and is an array
     if (jsonData['palindromes'] && Array.isArray(jsonData['palindromes'])) {
         // define 10 minutes ago in miliseconds
-        var tenMinutesAgoInMiliseconds = new Date().getTime() - 10*60*1000;
+        var tenMinutesAgoInMiliseconds = new Date().getTime() - constants.INTERVAL_ACTIVE_PALINDROMES;
         // get only palindromes received in last ten minutes
         var palindromesReceivedInLastTenMinutes = jsonData.palindromes.filter(function(palindromeObject) {
             return palindromeObject.received > tenMinutesAgoInMiliseconds;
