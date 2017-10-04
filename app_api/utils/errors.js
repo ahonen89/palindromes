@@ -32,8 +32,8 @@ var getError = function(errorName, messageTokens, details) {
     var error = errors[errorName];
 
     if (!error) {
-        // return with general SERVER_ERROR
-        return errors['SERVER_ERROR'];
+        // return with general SERVER_INTERNAL_ERROR
+        return errors['SERVER_INTERNAL_ERROR'];
     }
 
     // check tokens object contains values
