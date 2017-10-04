@@ -1,24 +1,7 @@
-function configState($stateProvider, $urlRouterProvider, $compileProvider, $mdThemingProvider) {
+function configState($stateProvider, $urlRouterProvider, $compileProvider) {
 
     // Optimize load start with remove binding information inside the DOM element
     $compileProvider.debugInfoEnabled(true);
-
-    // define custom theme
-    var customBlueMap = $mdThemingProvider.extendPalette('light-blue', {
-        'contrastDefaultColor': 'light',
-        'contrastDarkColors': ['50'],
-        '50': 'ffffff'
-    });
-    $mdThemingProvider.definePalette('customBlue', customBlueMap);
-    $mdThemingProvider.theme('default')
-        .primaryPalette('customBlue', {
-            'default': '500',
-            'hue-1': '50'
-        })
-        .accentPalette('pink');
-    $mdThemingProvider.theme('input', 'default')
-        .primaryPalette('grey');
-
 
     // UI routing
     // Set default state
