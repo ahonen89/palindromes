@@ -35,6 +35,7 @@ How the app could be extended in the future:
 - add palindrome validation on the client side.
 - improve UI: display errors based on error code (and errors.json file) from server side.
 - improve UI: make the UI responsive.
+- workflow: work on separate branches for each feature. create PR's for each feature.
 
 **3. App structure**
 
